@@ -31,7 +31,7 @@ public class PremadeNameGenerator {
 	}
 
 	public void setBeginningLetter(String beginningLetter) {
-		this.beginningLetter = beginningLetter;
+		this.beginningLetter = beginningLetter.toUpperCase();
 		
 	}
 
@@ -117,14 +117,38 @@ public class PremadeNameGenerator {
 	}
 
 	private boolean checkIfNameMatchesCriteria(CheckIfNameMatchesCriteriaParameter parameterObject) {
-		if(parameterObject.genders.get(parameterObject.index).contentEquals(getGender()) && 
-				parameterObject.names.get(parameterObject.index).length() == getLength()) {
+		if(criteriaToMatch(parameterObject)) {
 			parameterObject.name_attr.add(parameterObject.names.get(parameterObject.index));
 			parameterObject.name_attr.add(parameterObject.genders.get(parameterObject.index));
 			parameterObject.name_attr.add(String.valueOf(parameterObject.names.get(parameterObject.index).length()));
+			parameterObject.name_attr.add(String.valueOf(parameterObject.names.get(parameterObject.index).charAt(0)));
+			parameterObject.name_attr.add(String.valueOf(getLettersUsed()));
 			parameterObject.incorrect_criteria = false;
 		}
 		return parameterObject.incorrect_criteria;
+	}
+
+	private boolean criteriaToMatch(CheckIfNameMatchesCriteriaParameter parameterObject) {
+		return ifSameGender(parameterObject) && 
+				ifSameLength(parameterObject) && 
+				ifSameBeginningLetter(parameterObject) &&
+				ifSameLettersUsed(parameterObject);
+	}
+
+	private boolean ifSameLettersUsed(CheckIfNameMatchesCriteriaParameter parameterObject) {
+		return parameterObject.names.get(parameterObject.index).matches(".*["+getLettersUsed()+getBeginningLetter()+"].*");
+	}
+
+	private boolean ifSameBeginningLetter(CheckIfNameMatchesCriteriaParameter parameterObject) {
+		return parameterObject.names.get(parameterObject.index).startsWith(getBeginningLetter());
+	}
+
+	private boolean ifSameLength(CheckIfNameMatchesCriteriaParameter parameterObject) {
+		return parameterObject.names.get(parameterObject.index).length() == getLength();
+	}
+
+	private boolean ifSameGender(CheckIfNameMatchesCriteriaParameter parameterObject) {
+		return parameterObject.genders.get(parameterObject.index).contentEquals(getGender());
 	}
 
 }

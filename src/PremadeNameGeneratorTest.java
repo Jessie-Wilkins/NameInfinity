@@ -32,12 +32,12 @@ class PremadeNameGeneratorTest {
 	
 	@Test
 	void canGetBeginningLetter() {
-		assertEquals("r", gen.getBeginningLetter());
+		assertEquals("r", gen.getBeginningLetter().toLowerCase());
 	}
 	
 	@Test
 	void canGetLettersUsed() {
-		assertEquals("rutyfv", gen.getLettersUsed());
+		assertEquals("utyfv", gen.getLettersUsed());
 	}
 	
 	@Test
@@ -72,7 +72,14 @@ class PremadeNameGeneratorTest {
 	
 	@Test
 	void canGetRandomNameWithSpecificBeginningLetter() throws FileNotFoundException {
-		
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals("r", name_attr.get(3).toLowerCase());
+	}
+	
+	@Test
+	void canGetRandomNameWithSpecificLettersUsed() throws FileNotFoundException {
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals("utyfv", name_attr.get(4));
 	}
 	
 	private void fieldSetter() {
@@ -80,7 +87,7 @@ class PremadeNameGeneratorTest {
 		gen.setGender("M");
 		gen.setLength(4);
 		gen.setBeginningLetter("r");
-		gen.setLettersUsed("rutyfv");
+		gen.setLettersUsed("utyfv");
 	}
 	
 	

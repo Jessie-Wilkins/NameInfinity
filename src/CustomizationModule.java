@@ -17,15 +17,8 @@ public class CustomizationModule {
 	}
 	
 	public void methodUsedUserInput() {
-		Scanner user_input = new Scanner(System.in);
-		String test_value = user_input.next();
-		if(isMethod(test_value))
-			setMethodUsed(test_value);
-		else
-			System.out.println("Incorrect value: Please input either P or N");
-		
-		user_input.close();
-		
+		String test_value = userInputString();
+		checkMethodUsed(test_value);		
 	}
 
 	private boolean isMethod(String test_value) {
@@ -41,16 +34,8 @@ public class CustomizationModule {
 	}
 	
 	public void genderUserInput() {
-		Scanner user_input = new Scanner(System.in);
-		
-		String test_value = user_input.next();
-		if(isGender(test_value))
-			setGender(test_value);
-		else
-			System.out.println("Incorrect value: Please input either M or F");
-		
-		user_input.close();
-		
+		String test_value = userInputString();
+		checkGenderUsed(test_value);
 	}
 
 	private boolean isGender(String test_value) {
@@ -67,21 +52,8 @@ public class CustomizationModule {
 	}
 	
 	public void lengthUserInput() {
-		Scanner user_input = new Scanner(System.in);
-		
-		String test_value = user_input.next();
-		
-		try {
-			setLength(convertToInteger(test_value));
-		}
-		
-		catch(Exception e) {
-			System.out.println("Incorrect value: Please input integers with digits 0-9");
-		}
-		
-		finally {
-			user_input.close();
-		}
+		String test_value = userInputString();
+		checkLengthUsed(test_value);
 	}
 	
 	public void setBeginningLetter(String beginningLetter) {
@@ -94,17 +66,9 @@ public class CustomizationModule {
 	}
 	
 	public void beginningLetterUserInput() {
-		Scanner user_input = new Scanner(System.in);
+		String test_value = userInputString();
+		checkBeginningLetterUsed(test_value);
 		
-		String test_value = user_input.next();
-		if(isLetter(test_value)) {
-			setBeginningLetter(test_value);
-		}
-		else {
-			System.out.println("Incorrect value: Please input a letter (a-z)");
-		}
-		
-		user_input.close();
 	}
 
 	private boolean isLetter(String test_value) {
@@ -113,7 +77,6 @@ public class CustomizationModule {
 	
 	public void setLettersUsed(String lettersUsed) {
 		this.lettersUsed = lettersUsed;
-		
 	}
 	
 	public String getLettersUsed() {
@@ -121,27 +84,30 @@ public class CustomizationModule {
 	}
 	
 	public void lettersUsedUserInput() {
-		Scanner user_input = new Scanner(System.in);
-		String test_value = user_input.next();
-		
+		String test_value = userInputString();
+		checkLettersUsed(test_value);
+	}
+
+	private void checkLettersUsed(String test_value) {
 		if(areLetters(test_value)) {
 			setLettersUsed(test_value);
 		}
 		else {
 			System.out.println("Incorrect value: Please input a string with letters (a-z)");
 		}
-		
-		
-		user_input.close();
-		
 	}
 
 	private boolean areLetters(String test_value) {
 		boolean areLettersVar = true;
 		for(char i:test_value.toCharArray()) {
-			if(!Character.isLetter(i)) {
-				areLettersVar = false;
-			}
+			areLettersVar = isNotLetter(areLettersVar, i);
+		}
+		return areLettersVar;
+	}
+
+	private boolean isNotLetter(boolean areLettersVar, char i) {
+		if(!Character.isLetter(i)) {
+			areLettersVar = false;
 		}
 		return areLettersVar;
 	}
@@ -149,6 +115,45 @@ public class CustomizationModule {
 	private int convertToInteger(String test_value) {
 		return Integer.parseInt(test_value);
 	}
+	
+	private void checkMethodUsed(String test_value) {
+		if(isMethod(test_value))
+			setMethodUsed(test_value);
+		else
+			System.out.println("Incorrect value: Please input either P or N");
+	}
+	
+	private void checkGenderUsed(String test_value) {
+		if(isGender(test_value))
+			setGender(test_value);
+		else
+			System.out.println("Incorrect value: Please input either M or F");
+	}
+	
+	private void checkLengthUsed(String test_value) {
+		try {
+			setLength(convertToInteger(test_value));
+		}
+		
+		catch(Exception e) {
+			System.out.println("Incorrect value: Please input integers with digits 0-9");
+		}
+	}
 
+	private void checkBeginningLetterUsed(String test_value) {
+		if(isLetter(test_value)) {
+			setBeginningLetter(test_value);
+		}
+		else {
+			System.out.println("Incorrect value: Please input a letter (a-z)");
+		}
+	}
+	
+	private String userInputString() {
+		Scanner user_input = new Scanner(System.in);
+		String test_value = user_input.next();
+		user_input.close();
+		return test_value;
+	}
 
 }

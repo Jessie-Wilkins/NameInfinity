@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 class CustomizationModuleTest {
 
 	CustomizationModule custMod;
-	private String test_input; 
 	
 	@BeforeEach
 	void setUp() throws Exception {

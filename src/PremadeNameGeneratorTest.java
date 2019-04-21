@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +38,7 @@ class PremadeNameGeneratorTest {
 	
 	@Test
 	void canGetLettersUsed() {
-		assertEquals("utyfv", gen.getLettersUsed());
+		assertEquals("u", gen.getLettersUsed());
 	}
 	
 	@Test
@@ -79,7 +80,16 @@ class PremadeNameGeneratorTest {
 	@Test
 	void canGetRandomNameWithSpecificLettersUsed() throws FileNotFoundException {
 		ArrayList<String> name_attr = gen.getRandomName();
-		assertEquals("utyfv", name_attr.get(4));
+		String user_letters = sortString(gen.getLettersUsed());
+		String random_letters = sortString(name_attr.get(4)); 
+		assertEquals(user_letters, random_letters);
+	}
+
+	private String sortString(String unsort_string) {
+		char [] chars_used = unsort_string.toCharArray();
+		Arrays.sort(chars_used);
+		String sorted_string = String.valueOf(chars_used);
+		return sorted_string;
 	}
 	
 	private void fieldSetter() {
@@ -87,7 +97,7 @@ class PremadeNameGeneratorTest {
 		gen.setGender("M");
 		gen.setLength(4);
 		gen.setBeginningLetter("r");
-		gen.setLettersUsed("utyfv");
+		gen.setLettersUsed("u");
 	}
 	
 	

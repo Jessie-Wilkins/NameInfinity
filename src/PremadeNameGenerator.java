@@ -100,32 +100,61 @@ public class PremadeNameGenerator {
 		ArrayList<String> genders = getGendersFromFile();
 		ArrayList<String> name_attr = new ArrayList<String>();
 		
-		pickRandomName(names, genders, name_attr);
+		ArrayList<String> filtered_names = selectNamesWithCriteria(names, genders);
+		
+		ArrayList<String> filtered_genders = selectGendersWithCriteria(genders);
+		
+		pickRandomName(filtered_names, filtered_genders, name_attr);
 		
 		return name_attr;
 	}
 
+	private ArrayList<String> selectGendersWithCriteria(ArrayList<String> genders) {
+		ArrayList<String> filtered_genders = new ArrayList<String>();
+		for(int i=1;i<genders.size();i++) {
+			if(getGender().contentEquals(genders.get(i))) {
+				filtered_genders.add(genders.get(i));
+			}
+		}
+		return filtered_genders;
+	}
+
+	private ArrayList<String> selectNamesWithCriteria(ArrayList<String> names, ArrayList<String> genders) {
+		ArrayList<String> filtered_names = new ArrayList<String>();
+		for(int i=1;i<names.size();i++) {
+			if(criteriaToMatch(new CheckIfNameMatchesCriteriaParameter(names, genders, i))) {
+				filtered_names.add(names.get(i));
+			}
+		}
+		return filtered_names;
+		
+	}
+
 	private void pickRandomName(ArrayList<String> names, ArrayList<String> genders, ArrayList<String> name_attr) {
 		Random rand = new Random();
-		
-		boolean incorrect_criteria = true;
-		
-		while(incorrect_criteria) {
+		if(!names.isEmpty()) {
 			int index = rand.nextInt(names.size());
-			incorrect_criteria = checkIfNameMatchesCriteria(new CheckIfNameMatchesCriteriaParameter(names, genders, name_attr, incorrect_criteria, index));
+			addAttributes(names, genders, name_attr, index);
+		}
+		else {
+			addNothing(name_attr);
 		}
 	}
 
-	private boolean checkIfNameMatchesCriteria(CheckIfNameMatchesCriteriaParameter parameterObject) {
-		if(criteriaToMatch(parameterObject)) {
-			parameterObject.name_attr.add(parameterObject.names.get(parameterObject.index));
-			parameterObject.name_attr.add(parameterObject.genders.get(parameterObject.index));
-			parameterObject.name_attr.add(String.valueOf(parameterObject.names.get(parameterObject.index).length()));
-			parameterObject.name_attr.add(String.valueOf(parameterObject.names.get(parameterObject.index).charAt(0)));
-			parameterObject.name_attr.add(String.valueOf(getLettersUsed()));
-			parameterObject.incorrect_criteria = false;
+	private void addNothing(ArrayList<String> name_attr) {
+		for(int i = 0; i<5; i++) {
+			name_attr.add("No Name Found With Given Criteria");
 		}
-		return parameterObject.incorrect_criteria;
+		
+	}
+
+	private void addAttributes(ArrayList<String> names, ArrayList<String> genders, ArrayList<String> name_attr, int index) {
+		name_attr.add(names.get(index));
+		name_attr.add(genders.get(index));
+		name_attr.add(String.valueOf(names.get(index).length()));
+		name_attr.add(String.valueOf(names.get(index).charAt(0)));
+		name_attr.add(lettersUsedInRandomName(new CheckIfNameMatchesCriteriaParameter(names, genders, index)));	
+		
 	}
 
 	private boolean criteriaToMatch(CheckIfNameMatchesCriteriaParameter parameterObject) {
@@ -136,7 +165,13 @@ public class PremadeNameGenerator {
 	}
 
 	private boolean ifSameLettersUsed(CheckIfNameMatchesCriteriaParameter parameterObject) {
-		return parameterObject.names.get(parameterObject.index).matches(".*["+getLettersUsed()+getBeginningLetter()+"].*");
+		boolean allLettersUsed = true;
+		for(char i:getLettersUsed().toCharArray()) {
+			if(!parameterObject.names.get(parameterObject.index).contains(String.valueOf(i))) {
+				allLettersUsed = false;
+			}
+		}
+		return allLettersUsed;
 	}
 
 	private boolean ifSameBeginningLetter(CheckIfNameMatchesCriteriaParameter parameterObject) {
@@ -149,6 +184,16 @@ public class PremadeNameGenerator {
 
 	private boolean ifSameGender(CheckIfNameMatchesCriteriaParameter parameterObject) {
 		return parameterObject.genders.get(parameterObject.index).contentEquals(getGender());
+	}
+	
+	private String lettersUsedInRandomName (CheckIfNameMatchesCriteriaParameter parameterObject) {
+		String rand_str = "";
+		for(char i:getLettersUsed().toCharArray()) {
+			if(parameterObject.names.get(parameterObject.index).contains(String.valueOf(i))) {
+				rand_str += i;
+			}
+		}
+		return rand_str;
 	}
 
 }

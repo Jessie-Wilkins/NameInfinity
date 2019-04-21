@@ -7,6 +7,7 @@ public class CustomizationModule {
 	private int length;
 	private String beginningLetter;
 	private String lettersUsed;
+	private Scanner user_input = new Scanner(System.in);
 	
 	public void setMethodUsed(String MethodUsed) {
 		this.MethodUsed = MethodUsed;
@@ -150,10 +151,12 @@ public class CustomizationModule {
 	}
 	
 	private String userInputString() {
-		Scanner user_input = new Scanner(System.in);
 		String test_value = user_input.next();
-		user_input.close();
 		return test_value;
+	}
+
+	public void closeInput() {
+		user_input.close();
 	}
 
 }

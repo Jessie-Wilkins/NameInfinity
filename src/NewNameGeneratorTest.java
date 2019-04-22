@@ -1,0 +1,136 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class NewNameGeneratorTest {
+	
+	NewNameGenerator gen;
+	
+	@BeforeEach
+	void setUp() throws Exception {
+		gen = new NewNameGenerator();
+		fieldSetter();
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+	}
+
+	@Test
+	void canGetGender() {
+		assertEquals("M", gen.getGender());
+	}
+	@Test
+	void canGetLength() {
+		assertEquals(6, gen.getLength());
+	}
+	
+	@Test
+	void canGetBeginningLetter() {
+		assertEquals("r", gen.getBeginningLetter().toLowerCase());
+	}
+	
+	@Test
+	void canGetLettersUsed() {
+		assertEquals("u", gen.getLettersUsed());
+	}
+	
+	@Test
+	void canGetRandomNameOfSpecificGender() throws FileNotFoundException {
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals("M", name_attr.get(1));
+		
+	}
+	
+	@Test
+	void canGetRandomNameOfSpecificLength() throws FileNotFoundException {
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals("6", name_attr.get(2));
+	}
+	
+	@Test
+	void canGetRandomNameWithSpecificBeginningLetter() throws FileNotFoundException {
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals("r", name_attr.get(3).toLowerCase());
+	}
+	
+	@Test
+	void canGetRandomNameWithSpecificLettersUsed() throws FileNotFoundException {
+		ArrayList<String> name_attr = gen.getRandomName();
+		String user_letters = sortString(gen.getLettersUsed());
+		String random_letters = sortString(name_attr.get(4)); 
+		assertEquals(user_letters, random_letters);
+	}
+	
+	@Test
+	void nameDoesNotHaveTwoContiguousBeginningConsonants() {
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals(gen.isConsonant(name_attr.get(0).toLowerCase().charAt(0)), gen.isConsonant(name_attr.get(0).toLowerCase().charAt(1)));
+	}
+	
+	@Test
+	void nameDoesNotHaveMoreThanTwoContiguousConsonants() {
+		ArrayList<String> name_attr1 = gen.getRandomName();
+		ArrayList<String> name_attr2 = gen.getRandomName();
+		ArrayList<String> name_attr3 = gen.getRandomName();
+		ArrayList<String> name_attr4 = gen.getRandomName();
+		ArrayList<String> name_attr5 = gen.getRandomName();
+		ArrayList<String> name_attr6 = gen.getRandomName();
+		assertFalse(checkIfThreeContiguousConsonants(name_attr1));
+		assertFalse(checkIfThreeContiguousConsonants(name_attr2));
+		assertFalse(checkIfThreeContiguousConsonants(name_attr3));
+		assertFalse(checkIfThreeContiguousConsonants(name_attr4));
+		assertFalse(checkIfThreeContiguousConsonants(name_attr5));
+		assertFalse(checkIfThreeContiguousConsonants(name_attr6));
+		
+	}
+	
+	@Test
+	void nameDoesNotEndWithTwoContiguousConsonants() {
+		ArrayList<String> name_attr1 = gen.getRandomName();
+		ArrayList<String> name_attr2 = gen.getRandomName();
+		ArrayList<String> name_attr3 = gen.getRandomName();
+		ArrayList<String> name_attr4 = gen.getRandomName();
+		System.out.println(name_attr1.get(0));
+		System.out.println(name_attr2.get(0));
+		System.out.println(name_attr3.get(0));
+		System.out.println(name_attr4.get(0));
+		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr1));
+		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr2));
+		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr3));
+		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr4));
+	}
+
+	private boolean checkIfNameEndsWithTwoContiguousConsonants(ArrayList<String> name_attr1) {
+		return gen.isConsonant(name_attr1.get(0).charAt(name_attr1.get(0).length()-1)) 
+				&& gen.isConsonant(name_attr1.get(0).charAt(name_attr1.get(0).length()-2));
+	}
+
+	private boolean checkIfThreeContiguousConsonants(ArrayList<String> name_attr1) {
+		return gen.isConsonant(name_attr1.get(0).charAt(2))
+				&&gen.isConsonant(name_attr1.get(0).charAt(3))
+				&&gen.isConsonant(name_attr1.get(0).charAt(4));
+	}
+
+	private String sortString(String unsort_string) {
+		char [] chars_used = unsort_string.toCharArray();
+		Arrays.sort(chars_used);
+		String sorted_string = String.valueOf(chars_used);
+		return sorted_string;
+	}
+	
+	private void fieldSetter() {
+		gen.setGender("M");
+		gen.setLength(6);
+		gen.setBeginningLetter("r");
+		gen.setLettersUsed("u");
+	}
+	
+
+}

@@ -4,9 +4,13 @@ public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		CustomizationModule cust = new CustomizationModule();
+		System.out.println("Please enter gender of name: ");
 		cust.genderUserInput();
+		System.out.println("Please enter length of name: ");
 		cust.lengthUserInput();
+		System.out.println("Please enter beginning letter used in name: ");
 		cust.beginningLetterUserInput();
+		System.out.println("Please enter letters used in name: ");
 		cust.lettersUsedUserInput();
 		cust.closeInput();
 		

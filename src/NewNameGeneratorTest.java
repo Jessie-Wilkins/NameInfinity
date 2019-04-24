@@ -141,12 +141,12 @@ class NewNameGeneratorTest {
 				&&gen.isConsonant(name_attr1.get(0).charAt(4));
 	}
 	
-	private boolean checkIfThreeContiguousVowels(ArrayList<String> name_attr1) {
+	/*private boolean checkIfThreeContiguousVowels(ArrayList<String> name_attr1) {
 		return gen.isVowel(name_attr1.get(0).charAt(2))
 				&&gen.isVowel(name_attr1.get(0).charAt(3))
 				&&gen.isVowel(name_attr1.get(0).charAt(4));
 	}
-
+*/
 	private String sortString(String unsort_string) {
 		char [] chars_used = unsort_string.toCharArray();
 		Arrays.sort(chars_used);

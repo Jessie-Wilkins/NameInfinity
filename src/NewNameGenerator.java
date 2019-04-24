@@ -66,6 +66,15 @@ public class NewNameGenerator {
 			return false;
 		}
 	}
+	
+	public boolean isVowel(char charAt) {
+		if("aeiou".contains(String.valueOf(charAt))) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	private String iterateThroughLetters(ArrayList<String> name_attr, char[] letters, Random rand) {
 		int new_name_length=0;
@@ -87,6 +96,9 @@ public class NewNameGenerator {
 				
 			}
 			else if(areNotTwoContiguousEndingConsonants(letters, new_name_length, new_name, rand_index)) {
+				
+			}
+			else if(areNotMoreThanThreeContiguousVowels(letters, new_name_length, new_name, rand_index)) {
 				
 			}
 			else if(isMale(new_name_length)) {
@@ -119,6 +131,13 @@ public class NewNameGenerator {
 		return new_name_length > 1 && isConsonant(letters[rand_index])
 				&& isConsonant(new_name.toLowerCase().charAt(new_name_length-1))
 				&& isConsonant(new_name.toLowerCase().charAt(new_name_length-2));
+	}
+	
+	private boolean areNotMoreThanThreeContiguousVowels(char[] letters, int new_name_length, String new_name,
+			int rand_index) {
+		return new_name_length > 1 && isVowel(letters[rand_index])
+				&& isVowel(new_name.toLowerCase().charAt(new_name_length-1))
+				&& isVowel(new_name.toLowerCase().charAt(new_name_length-2));
 	}
 	
 	private boolean areNotTwoContiguousEndingConsonants(char[] letters, int new_name_length, String new_name,

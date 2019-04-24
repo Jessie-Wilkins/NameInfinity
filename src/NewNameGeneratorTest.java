@@ -75,6 +75,12 @@ class NewNameGeneratorTest {
 	}
 	
 	@Test
+	void nameDoesNotHaveTwoContiguousBeginningVowels() {
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals(gen.isVowel(name_attr.get(0).toLowerCase().charAt(0)), gen.isVowel(name_attr.get(0).toLowerCase().charAt(1)));
+	}
+	
+	@Test
 	void nameDoesNotHaveMoreThanTwoContiguousConsonants() {
 		ArrayList<String> name_attr1 = gen.getRandomName();
 		ArrayList<String> name_attr2 = gen.getRandomName();
@@ -88,6 +94,23 @@ class NewNameGeneratorTest {
 		assertFalse(checkIfThreeContiguousConsonants(name_attr4));
 		assertFalse(checkIfThreeContiguousConsonants(name_attr5));
 		assertFalse(checkIfThreeContiguousConsonants(name_attr6));
+		
+	}
+	
+	@Test
+	void nameDoesNotHaveMoreThanTwoContiguousVowels() {
+		ArrayList<String> name_attr1 = gen.getRandomName();
+		ArrayList<String> name_attr2 = gen.getRandomName();
+		ArrayList<String> name_attr3 = gen.getRandomName();
+		ArrayList<String> name_attr4 = gen.getRandomName();
+		ArrayList<String> name_attr5 = gen.getRandomName();
+		ArrayList<String> name_attr6 = gen.getRandomName();
+		assertFalse(checkIfThreeContiguousVowels(name_attr1));
+		assertFalse(checkIfThreeContiguousVowels(name_attr2));
+		assertFalse(checkIfThreeContiguousVowels(name_attr3));
+		assertFalse(checkIfThreeContiguousVowels(name_attr4));
+		assertFalse(checkIfThreeContiguousVowels(name_attr5));
+		assertFalse(checkIfThreeContiguousVowels(name_attr6));
 		
 	}
 	
@@ -116,6 +139,12 @@ class NewNameGeneratorTest {
 		return gen.isConsonant(name_attr1.get(0).charAt(2))
 				&&gen.isConsonant(name_attr1.get(0).charAt(3))
 				&&gen.isConsonant(name_attr1.get(0).charAt(4));
+	}
+	
+	private boolean checkIfThreeContiguousVowels(ArrayList<String> name_attr1) {
+		return gen.isVowel(name_attr1.get(0).charAt(2))
+				&&gen.isVowel(name_attr1.get(0).charAt(3))
+				&&gen.isVowel(name_attr1.get(0).charAt(4));
 	}
 
 	private String sortString(String unsort_string) {

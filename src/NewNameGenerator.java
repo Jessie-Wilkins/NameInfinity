@@ -51,9 +51,9 @@ public class NewNameGenerator {
 		
 		Random rand = new Random();
 		
-		String new_name = iterateThroughLetters(name_attr, letters, rand);
+		iterateThroughLetters(name_attr, letters, rand);
 		
-		//System.out.println(new_name);
+		
 		
 		return name_attr;
 	}

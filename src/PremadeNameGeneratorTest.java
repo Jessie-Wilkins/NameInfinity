@@ -38,7 +38,7 @@ class PremadeNameGeneratorTest {
 	
 	@Test
 	void canGetLettersUsed() {
-		assertEquals("u", gen.getLettersUsed());
+		assertEquals("a", gen.getLettersUsed());
 	}
 	
 	@Test
@@ -97,7 +97,7 @@ class PremadeNameGeneratorTest {
 		gen.setGender("M");
 		gen.setLength(4);
 		gen.setBeginningLetter("r");
-		gen.setLettersUsed("u");
+		gen.setLettersUsed("a");
 	}
 	
 	

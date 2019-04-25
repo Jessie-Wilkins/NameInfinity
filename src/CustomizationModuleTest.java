@@ -41,6 +41,13 @@ class CustomizationModuleTest {
 	}
 	
 	@Test
+	void ReceiveInputForLowerCaseGender() {
+		SimulateUserInput("m");
+		custMod.genderUserInput();
+		assertEquals("M", custMod.getGender());
+	}
+	
+	@Test
 	void validateInputForGender() {
 		SimulateUserInput("R");
 		custMod.genderUserInput();

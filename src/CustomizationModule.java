@@ -23,7 +23,7 @@ public class CustomizationModule {
 	}
 
 	private boolean isMethod(String test_value) {
-		return test_value.equals("P") || test_value.equals("N");
+		return test_value.toUpperCase().equals("P") || test_value.toUpperCase().equals("N");
 	}
 	
 	public void setGender(String gender) {
@@ -40,7 +40,7 @@ public class CustomizationModule {
 	}
 
 	private boolean isGender(String test_value) {
-		return test_value.equals("M") || test_value.equals("F");
+		return test_value.toUpperCase().equals("M") || test_value.toUpperCase().equals("F");
 	}
 	
 	public void setLength(int length) {
@@ -119,16 +119,17 @@ public class CustomizationModule {
 	
 	private void checkMethodUsed(String test_value) {
 		if(isMethod(test_value))
-			setMethodUsed(test_value);
+			setMethodUsed(test_value.toUpperCase());
 		else
 			System.out.println("Incorrect value: Please input either P or N");
 	}
 	
 	private void checkGenderUsed(String test_value) {
 		if(isGender(test_value))
-			setGender(test_value);
-		else
+			setGender(test_value.toUpperCase());
+		else  
 			System.out.println("Incorrect value: Please input either M or F");
+			
 	}
 	
 	private void checkLengthUsed(String test_value) {

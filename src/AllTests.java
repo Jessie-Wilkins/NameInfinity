@@ -4,7 +4,7 @@ import org.junit.platform.runner.*;
 
 
 @RunWith(JUnitPlatform.class)
-@SelectClasses({CustomizationModuleTest.class, PremadeNameGeneratorTest.class})
+@SelectClasses({CustomizationModuleTest.class, PremadeNameGeneratorTest.class, NewNameGeneratorTest.class})
 public class AllTests {
 
 }

@@ -73,7 +73,7 @@ public class CustomizationModule {
 	}
 
 	private boolean isLetter(String test_value) {
-		return Character.isLetter(test_value.charAt(0));
+		return Character.isLetter(test_value.charAt(0))&&test_value.length()==1;
 	}
 	
 	public void setLettersUsed(String lettersUsed) {
@@ -91,7 +91,7 @@ public class CustomizationModule {
 
 	private void checkLettersUsed(String test_value) {
 		if(areLetters(test_value)) {
-			setLettersUsed(test_value);
+			setLettersUsed(test_value.toLowerCase());
 		}
 		else {
 			System.out.println("Incorrect value: Please input a string with letters (a-z)");
@@ -155,7 +155,7 @@ public class CustomizationModule {
 			setBeginningLetter(test_value);
 		}
 		else {
-			System.out.println("Incorrect value: Please input a letter (a-z)");
+			System.out.println("Incorrect value: Please input a single letter (a-z)");
 		}
 	}
 

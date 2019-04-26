@@ -77,6 +77,12 @@ class CustomizationModuleTest {
 	}
 	
 	@Test
+	void doNotAcceptMoreThanOneCharacterBeginningLetter() {
+		custMod.beginningLetterUserInput("ab");
+		assertEquals(null, custMod.getBeginningLetter());
+	}
+	
+	@Test
 	void ReceiveInputForLettersUsed() {
 		custMod.lettersUsedUserInput("ctryu");
 		assertEquals("ctryu", custMod.getLettersUsed());
@@ -86,6 +92,12 @@ class CustomizationModuleTest {
 	void validateInputForLettersUsed() {
 		custMod.lettersUsedUserInput("!%1");
 		assertEquals(null, custMod.getLettersUsed());
+	}
+	
+	@Test
+	void finalLettersUsedAreLowerCase() {
+		custMod.lettersUsedUserInput("BaT");
+		assertEquals("bat", custMod.getLettersUsed());
 	}
 
 }

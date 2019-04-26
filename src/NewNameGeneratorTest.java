@@ -137,6 +137,20 @@ class NewNameGeneratorTest {
 		assertFalse(name_attr.isEmpty());
 		
 	}
+	
+	@Test
+	void oneLetterNameDoesNotHaveLettersUsed() {
+		gen.setLength(1);
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals("", name_attr.get(4));
+	}
+	
+	@Test
+	void oneLetterNameUsesBeginningLetter() {
+		gen.setLength(1);
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertEquals(gen.getBeginningLetter(), name_attr.get(3));
+	}
 
 	private boolean checkIfNameEndsWithTwoContiguousConsonants(ArrayList<String> name_attr1) {
 		return gen.isConsonant(name_attr1.get(0).charAt(name_attr1.get(0).length()-1)) 

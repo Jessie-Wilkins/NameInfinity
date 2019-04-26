@@ -1,7 +1,4 @@
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.io.ByteArrayInputStream;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,6 +55,12 @@ class CustomizationModuleTest {
 	@Test
 	void validateInputForLength() {
 		custMod.lengthUserInput("R");
+		assertEquals(0, custMod.getLength());
+	}
+	
+	@Test
+	void checkIfLengthGreaterThanZero() {
+		custMod.lengthUserInput("-2");
 		assertEquals(0, custMod.getLength());
 	}
 	

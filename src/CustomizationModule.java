@@ -134,11 +134,19 @@ public class CustomizationModule {
 	
 	private void checkLengthUsed(String test_value) {
 		try {
-			setLength(convertToInteger(test_value));
+			
+			int test_number = convertToInteger(test_value);
+			if(test_number > 0) {
+				setLength(test_number);
+			}
+			else {
+				System.out.println("Incorrect value: Please input integers with digits 0-9 and size greater than 0");
+			}
+
 		}
 		
 		catch(Exception e) {
-			System.out.println("Incorrect value: Please input integers with digits 0-9");
+			System.out.println("Incorrect value: Please input integers with digits 0-9 and size greater than 0");
 		}
 	}
 
@@ -149,11 +157,6 @@ public class CustomizationModule {
 		else {
 			System.out.println("Incorrect value: Please input a letter (a-z)");
 		}
-	}
-	
-	private String userInputString() {
-		String test_value = user_input.next();
-		return test_value;
 	}
 
 	public void closeInput() {

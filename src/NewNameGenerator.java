@@ -82,7 +82,7 @@ public class NewNameGenerator {
 		int [] usedLettersIndices = new int[getLettersUsed().length()];
 		
 		getRandomLocationsOfLettersUsed(rand, usedLettersIndices);
-		
+	
 		String new_name = "";
 		
 		int usedLettersIndex = 0;
@@ -101,6 +101,13 @@ public class NewNameGenerator {
 			else if(areNotMoreThanThreeContiguousVowels(letters, new_name_length, new_name, rand_index)) {
 				
 			}
+			else if(new_name_length==0) {
+				new_name+=getBeginningLetter();
+				new_name_length++;
+				if(new_name_length==getLength()) {
+					addAttributes(name_attr, new_name);
+				}
+			}
 			else if(isMale(new_name_length)) {
 				if(isNotAOrI(letters, rand_index)) {
 					new_name +=letters[rand_index];
@@ -116,10 +123,6 @@ public class NewNameGenerator {
 			else if(isIndexOfLetterUsed(new_name_length, usedLettersIndices, usedLettersIndex)) {
 				new_name+=getLettersUsed().charAt(usedLettersIndex);
 				usedLettersIndex++;
-				new_name_length++;
-			}
-			else if(new_name_length==0) {
-				new_name+=getBeginningLetter();
 				new_name_length++;
 			}
 			else {
@@ -147,7 +150,7 @@ public class NewNameGenerator {
 	
 	private boolean areNotTwoContiguousEndingConsonants(char[] letters, int new_name_length, String new_name,
 			int rand_index) {
-		return new_name_length == getLength()-1 && isConsonant(letters[rand_index])
+		return getLength()>1&&new_name_length == getLength()-1 && isConsonant(letters[rand_index])
 				&& isConsonant(new_name.charAt(new_name_length-1));
 	}
 
@@ -162,6 +165,9 @@ public class NewNameGenerator {
 
 	private void getRandomLocationsOfLettersUsed(Random rand, int[] usedLettersIndices) {
 		for(int i = 0; i<getLettersUsed().length(); i++) {
+			if(getLength() == 1) {
+				break;
+			}
 			usedLettersIndices[i] = rand.nextInt(getLength()-1);
 			if(usedLettersIndices[i] == 0) {
 				usedLettersIndices[i]++;

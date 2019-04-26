@@ -108,6 +108,11 @@ public class NewNameGenerator {
 					addAttributes(name_attr, new_name);
 				}
 			}
+			else if(isFemale(new_name_length)) {
+				new_name +=letters[rand_index];
+				new_name_length++;
+				addAttributes(name_attr, new_name);
+			}
 			else if(isIndexOfLetterUsed(new_name_length, usedLettersIndices, usedLettersIndex)) {
 				new_name+=getLettersUsed().charAt(usedLettersIndex);
 				usedLettersIndex++;
@@ -120,6 +125,7 @@ public class NewNameGenerator {
 			else {
 				new_name += letters[rand_index];
 				new_name_length++;
+				System.out.println("Uses the else!");
 			}
 			
 		}
@@ -189,6 +195,10 @@ public class NewNameGenerator {
 
 	private boolean isMale(int new_name_length) {
 		return new_name_length == getLength()-1 && getGender().equals("M");
+	}
+	
+	private boolean isFemale(int new_name_length) {
+		return new_name_length == getLength()-1 && getGender().equals("F");
 	}
 
 }

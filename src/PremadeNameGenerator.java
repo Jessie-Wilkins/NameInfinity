@@ -79,7 +79,7 @@ public class PremadeNameGenerator {
 	}
 	
 	private File getFileObject() {
-		File file_object = new File(System.getProperty("user.dir")+"\\src\\"+file);
+		File file_object = new File(System.getProperty("user.dir")+"/src/"+file);
 		return file_object;
 	}
 

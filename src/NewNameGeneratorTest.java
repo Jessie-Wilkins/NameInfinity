@@ -129,6 +129,14 @@ class NewNameGeneratorTest {
 		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr3));
 		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr4));
 	}
+	
+	@Test
+	void femaleNameCanBeReturned() {
+		gen.setGender("F");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertFalse(name_attr.isEmpty());
+		
+	}
 
 	private boolean checkIfNameEndsWithTwoContiguousConsonants(ArrayList<String> name_attr1) {
 		return gen.isConsonant(name_attr1.get(0).charAt(name_attr1.get(0).length()-1)) 

@@ -17,8 +17,8 @@ public class CustomizationModule {
 		return MethodUsed;
 	}
 	
-	public void methodUsedUserInput() {
-		String test_value = userInputString();
+	public void methodUsedUserInput(String input_string) {
+		String test_value = input_string;
 		checkMethodUsed(test_value);		
 	}
 
@@ -34,8 +34,8 @@ public class CustomizationModule {
 		return gender;
 	}
 	
-	public void genderUserInput() {
-		String test_value = userInputString();
+	public void genderUserInput(String input_string) {
+		String test_value = input_string;
 		checkGenderUsed(test_value);
 	}
 
@@ -52,8 +52,8 @@ public class CustomizationModule {
 		return length;
 	}
 	
-	public void lengthUserInput() {
-		String test_value = userInputString();
+	public void lengthUserInput(String input_string) {
+		String test_value = input_string;
 		checkLengthUsed(test_value);
 	}
 	
@@ -66,8 +66,8 @@ public class CustomizationModule {
 		return beginningLetter;
 	}
 	
-	public void beginningLetterUserInput() {
-		String test_value = userInputString();
+	public void beginningLetterUserInput(String input_string) {
+		String test_value = input_string;
 		checkBeginningLetterUsed(test_value);
 		
 	}
@@ -84,8 +84,8 @@ public class CustomizationModule {
 		return lettersUsed;
 	}
 	
-	public void lettersUsedUserInput() {
-		String test_value = userInputString();
+	public void lettersUsedUserInput(String input_string) {
+		String test_value = input_string;
 		checkLettersUsed(test_value);
 	}
 

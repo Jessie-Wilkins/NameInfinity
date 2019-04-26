@@ -21,84 +21,68 @@ class CustomizationModuleTest {
 	
 	@Test
 	void ReceiveInputForGenerationMethodPremade() {
-		SimulateUserInput("P");
-		custMod.methodUsedUserInput();
+		custMod.methodUsedUserInput("P");
 		assertEquals("P", custMod.getMethodUsed());
 	}
 	
 	@Test
 	void validateInputForGenerationMethodPremade() {
-		SimulateUserInput("R");
-		custMod.methodUsedUserInput();
+		custMod.methodUsedUserInput("R");
 		assertEquals(null, custMod.getMethodUsed());
 	}
 	
 	@Test
 	void ReceiveInputForGender() {
-		SimulateUserInput("M");
-		custMod.genderUserInput();
+		custMod.genderUserInput("M");
 		assertEquals("M", custMod.getGender());
 	}
 	
 	@Test
 	void ReceiveInputForLowerCaseGender() {
-		SimulateUserInput("m");
-		custMod.genderUserInput();
+		custMod.genderUserInput("m");
 		assertEquals("M", custMod.getGender());
 	}
 	
 	@Test
 	void validateInputForGender() {
-		SimulateUserInput("R");
-		custMod.genderUserInput();
+		custMod.genderUserInput("R");
 		assertEquals(null, custMod.getGender());
 	}
 	
 	@Test
 	void ReceiveInputForLength() {
-		SimulateUserInput("5");
-		custMod.lengthUserInput();
+		custMod.lengthUserInput("5");
 		assertEquals(5, custMod.getLength());
 	}
 	
 	@Test
 	void validateInputForLength() {
-		SimulateUserInput("R");
-		custMod.lengthUserInput();
+		custMod.lengthUserInput("R");
 		assertEquals(0, custMod.getLength());
 	}
 	
 	@Test
 	void ReceiveInputForBeginningLetter() {
-		SimulateUserInput("c");
-		custMod.beginningLetterUserInput();
+		custMod.beginningLetterUserInput("c");
 		assertEquals("c", custMod.getBeginningLetter());
 	}
 	
 	@Test
 	void validateInputForBeginningLetter() {
-		SimulateUserInput("1");
-		custMod.beginningLetterUserInput();
+		custMod.beginningLetterUserInput("1");
 		assertEquals(null, custMod.getBeginningLetter());
 	}
 	
 	@Test
 	void ReceiveInputForLettersUsed() {
-		SimulateUserInput("ctryu");
-		custMod.lettersUsedUserInput();
+		custMod.lettersUsedUserInput("ctryu");
 		assertEquals("ctryu", custMod.getLettersUsed());
 	}
 	
 	@Test 
 	void validateInputForLettersUsed() {
-		SimulateUserInput("!%1");
-		custMod.lettersUsedUserInput();
+		custMod.lettersUsedUserInput("!%1");
 		assertEquals(null, custMod.getLettersUsed());
-	}
-
-	private void SimulateUserInput(String user_input) {
-		ByteArrayInputStream in = new ByteArrayInputStream(user_input.getBytes());
-		System.setIn(in);
 	}
 
 }

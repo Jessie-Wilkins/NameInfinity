@@ -125,7 +125,6 @@ public class NewNameGenerator {
 			else {
 				new_name += letters[rand_index];
 				new_name_length++;
-				System.out.println("Uses the else!");
 			}
 			
 		}

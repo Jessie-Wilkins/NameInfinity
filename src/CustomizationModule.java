@@ -135,7 +135,9 @@ public class CustomizationModule {
 	private void checkLengthUsed(String test_value) {
 		try {
 			ifRandomOptionSetLengthToNegativeOne(test_value);
-			ifNumberGreaterThanZeroSetLengthElsePrintErrorStatement(test_value);
+			if(!test_value.contentEquals("?")) {
+				ifNumberGreaterThanZeroSetLengthElsePrintErrorStatement(test_value);
+			}
 
 		}
 		
@@ -149,7 +151,7 @@ public class CustomizationModule {
 		if(test_number > 0) {
 			setLength(test_number);
 		}
-		else {
+		else{
 			System.out.println("Incorrect value: Please input integers with digits 0-9 and size greater than 0");
 		}
 	}

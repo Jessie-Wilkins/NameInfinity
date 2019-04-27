@@ -77,6 +77,10 @@ public class NewNameGenerator {
 	private String iterateThroughLetters(ArrayList<String> name_attr, char[] letters, Random rand) {
 		int new_name_length=0;
 		
+		if(getLength() == -1) {
+			setLength(rand.nextInt(20));
+		}
+		
 		int [] usedLettersIndices = new int[getLettersUsed().length()];
 		
 		getRandomLocationsOfLettersUsed(rand, usedLettersIndices);
@@ -121,6 +125,21 @@ public class NewNameGenerator {
 					String confirmed_gender = "F";
 					addAttributes(name_attr, new_name, confirmed_gender);
 				}
+			}
+			else if(isRandomGender(new_name_length)) {
+				if(isNotO(letters, rand_index)) {
+					new_name +=letters[rand_index];
+					new_name_length++;
+					String confirmed_gender = "F";
+					addAttributes(name_attr, new_name, confirmed_gender);
+				}
+				else if(isNotAOrI(letters, rand_index)) {
+					new_name +=letters[rand_index];
+					new_name_length++;
+					String confirmed_gender = "M";
+					addAttributes(name_attr, new_name, confirmed_gender);
+				}
+				
 			}
 			else if(isIndexOfLetterUsed(new_name_length, usedLettersIndices, usedLettersIndex)) {
 				new_name+=getLettersUsed().charAt(usedLettersIndex);
@@ -206,6 +225,10 @@ public class NewNameGenerator {
 
 	private boolean isMale(int new_name_length) {
 		return new_name_length == getLength()-1 && getGender().equals("M");
+	}
+	
+	private boolean isRandomGender(int new_name_length) {
+		return new_name_length == getLength()-1 && getGender().equals("?");
 	}
 	
 	private boolean isFemale(int new_name_length) {

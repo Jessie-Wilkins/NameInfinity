@@ -115,6 +115,9 @@ public class PremadeNameGenerator {
 			if(getGender().contentEquals(genders.get(i))) {
 				filtered_genders.add(genders.get(i));
 			}
+			else if(getGender().contentEquals("?")) {
+				filtered_genders.add(genders.get(i));
+			}
 		}
 		return filtered_genders;
 	}
@@ -167,7 +170,7 @@ public class PremadeNameGenerator {
 	private boolean ifSameLettersUsed(CheckIfNameMatchesCriteriaParameter parameterObject) {
 		boolean allLettersUsed = true;
 		for(char i:getLettersUsed().toCharArray()) {
-			if(!parameterObject.names.get(parameterObject.index).contains(String.valueOf(i))) {
+			if(!parameterObject.names.get(parameterObject.index).contains(String.valueOf(i)) && !getLettersUsed().contentEquals("?")) {
 				allLettersUsed = false;
 			}
 		}
@@ -175,15 +178,15 @@ public class PremadeNameGenerator {
 	}
 
 	private boolean ifSameBeginningLetter(CheckIfNameMatchesCriteriaParameter parameterObject) {
-		return parameterObject.names.get(parameterObject.index).startsWith(getBeginningLetter());
+		return parameterObject.names.get(parameterObject.index).startsWith(getBeginningLetter()) || getBeginningLetter().contentEquals("?");
 	}
 
 	private boolean ifSameLength(CheckIfNameMatchesCriteriaParameter parameterObject) {
-		return parameterObject.names.get(parameterObject.index).length() == getLength();
+		return parameterObject.names.get(parameterObject.index).length() == getLength() || getLength() == -1;
 	}
 
 	private boolean ifSameGender(CheckIfNameMatchesCriteriaParameter parameterObject) {
-		return parameterObject.genders.get(parameterObject.index).contentEquals(getGender());
+		return parameterObject.genders.get(parameterObject.index).contentEquals(getGender()) || getGender().contentEquals("?");
 	}
 	
 	private String lettersUsedInRandomName (CheckIfNameMatchesCriteriaParameter parameterObject) {

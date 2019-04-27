@@ -69,7 +69,7 @@ class PremadeNameGeneratorTest {
 	void canGetRandomNameWithRandomGenderOption() throws FileNotFoundException {
 		gen.setGender("?");
 		ArrayList<String> name_attr = gen.getRandomName();
-		assertNotEquals("?", name_attr.get(1));
+		assertNotEquals("No Name Found With Given Criteria", name_attr.get(1));
 	}
 	
 	@Test
@@ -79,9 +79,23 @@ class PremadeNameGeneratorTest {
 	}
 	
 	@Test
+	void canGetRandomNameWithRandomLengthOption() throws FileNotFoundException {
+		gen.setLength(-1);
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals("No Name Found With Given Criteria", name_attr.get(2));
+	}
+	
+	@Test
 	void canGetRandomNameWithSpecificBeginningLetter() throws FileNotFoundException {
 		ArrayList<String> name_attr = gen.getRandomName();
 		assertEquals("r", name_attr.get(3).toLowerCase());
+	}
+	
+	@Test
+	void canGetRandomNameWithRandomBeginningLetterOption() throws FileNotFoundException {
+		gen.setBeginningLetter("?");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals("No Name Found With Given Criteria", name_attr.get(3));
 	}
 	
 	@Test
@@ -90,6 +104,13 @@ class PremadeNameGeneratorTest {
 		String user_letters = sortString(gen.getLettersUsed());
 		String random_letters = sortString(name_attr.get(4)); 
 		assertEquals(user_letters, random_letters);
+	}
+	
+	@Test
+	void canGetRandomNameWithRandomLettersUsedOption() throws FileNotFoundException {
+		gen.setLettersUsed("?");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals("No Name Found With Given Criteria", name_attr.get(3));
 	}
 
 	private String sortString(String unsort_string) {

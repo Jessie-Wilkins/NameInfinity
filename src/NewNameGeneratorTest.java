@@ -57,9 +57,23 @@ class NewNameGeneratorTest {
 	}
 	
 	@Test
+	void canGetRandomNameWithRandomGenderOption() {
+		gen.setGender("?");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals(0,name_attr.size());
+	}
+	
+	@Test
 	void canGetRandomNameOfSpecificLength() throws FileNotFoundException {
 		ArrayList<String> name_attr = gen.getRandomName();
 		assertEquals("6", name_attr.get(2));
+	}
+	
+	@Test
+	void canGetRandomNameWithRandomLengthOption() {
+		gen.setLength(-1);
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals(0,name_attr.size());
 	}
 	
 	@Test

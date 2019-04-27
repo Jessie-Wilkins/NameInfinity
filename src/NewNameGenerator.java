@@ -10,7 +10,6 @@ public class NewNameGenerator {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-		
 	}
 
 	public String getGender() {
@@ -28,7 +27,6 @@ public class NewNameGenerator {
 
 	public void setBeginningLetter(String beginningLetter) {
 		this.beginningLetter = beginningLetter.toUpperCase();
-		
 	}
 
 	public String getBeginningLetter() {

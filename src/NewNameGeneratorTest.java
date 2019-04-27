@@ -128,10 +128,6 @@ class NewNameGeneratorTest {
 		ArrayList<String> name_attr2 = gen.getRandomName();
 		ArrayList<String> name_attr3 = gen.getRandomName();
 		ArrayList<String> name_attr4 = gen.getRandomName();
-		System.out.println(name_attr1.get(0));
-		System.out.println(name_attr2.get(0));
-		System.out.println(name_attr3.get(0));
-		System.out.println(name_attr4.get(0));
 		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr1));
 		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr2));
 		assertFalse(checkIfNameEndsWithTwoContiguousConsonants(name_attr3));

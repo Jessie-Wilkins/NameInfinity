@@ -29,6 +29,12 @@ class CustomizationModuleTest {
 	}
 	
 	@Test
+	void checkForRandomOptionForMethodUsed() {
+		custMod.methodUsedUserInput("?");
+		assertEquals("?", custMod.getMethodUsed());
+	}
+	
+	@Test
 	void ReceiveInputForGender() {
 		custMod.genderUserInput("M");
 		assertEquals("M", custMod.getGender());
@@ -44,6 +50,12 @@ class CustomizationModuleTest {
 	void validateInputForGender() {
 		custMod.genderUserInput("R");
 		assertEquals(null, custMod.getGender());
+	}
+	
+	@Test
+	void checkForRandomOptionForGender() {
+		custMod.genderUserInput("?");
+		assertEquals("?", custMod.getGender());
 	}
 	
 	@Test
@@ -65,6 +77,12 @@ class CustomizationModuleTest {
 	}
 	
 	@Test
+	void checkForRandomOptionForLength() {
+		custMod.lengthUserInput("?");
+		assertEquals(-1, custMod.getLength());
+	}
+	
+	@Test
 	void ReceiveInputForBeginningLetter() {
 		custMod.beginningLetterUserInput("c");
 		assertEquals("c", custMod.getBeginningLetter());
@@ -83,6 +101,12 @@ class CustomizationModuleTest {
 	}
 	
 	@Test
+	void checkForRandomOptionForBeginningLetter() {
+		custMod.beginningLetterUserInput("?");
+		assertEquals("?", custMod.getBeginningLetter());
+	}
+	
+	@Test
 	void ReceiveInputForLettersUsed() {
 		custMod.lettersUsedUserInput("ctryu");
 		assertEquals("ctryu", custMod.getLettersUsed());
@@ -92,6 +116,12 @@ class CustomizationModuleTest {
 	void validateInputForLettersUsed() {
 		custMod.lettersUsedUserInput("!%1");
 		assertEquals(null, custMod.getLettersUsed());
+	}
+	
+	@Test
+	void checkForRandomOptionForLettersUsed() {
+		custMod.lettersUsedUserInput("?");
+		assertEquals("?", custMod.getLettersUsed());
 	}
 	
 	@Test

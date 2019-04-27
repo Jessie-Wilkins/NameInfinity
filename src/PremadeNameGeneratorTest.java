@@ -66,6 +66,13 @@ class PremadeNameGeneratorTest {
 	}
 	
 	@Test
+	void canGetRandomNameWithRandomGenderOption() throws FileNotFoundException {
+		gen.setGender("?");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals("?", name_attr.get(1));
+	}
+	
+	@Test
 	void canGetRandomNameOfSpecificLength() throws FileNotFoundException {
 		ArrayList<String> name_attr = gen.getRandomName();
 		assertEquals("4", name_attr.get(2));

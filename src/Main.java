@@ -7,17 +7,19 @@ public class Main {
 	public static void main(String[] args) throws FileNotFoundException {
 		CustomizationModule cust = new CustomizationModule();
 		getUserInput(cust);
+		chooseMethodUsed(cust);
 		
+	}
+
+	private static void chooseMethodUsed(CustomizationModule cust) throws FileNotFoundException {
 		if(ifPremade(cust)) {
 			PremadeNameGenerator gen = setPremadeNameGenerator(cust);
 			outputPremadeName(gen);
 		}
-			
 		else if(ifNew(cust)) {
 			NewNameGenerator gen = setNewNameGenerator(cust);
 			outputNewName(gen);
 		}
-		
 		else if(ifRandomGen(cust)) {
 			Random rand = new Random();
 			if(rand.nextBoolean()) {
@@ -28,13 +30,7 @@ public class Main {
 				PremadeNameGenerator gen = setPremadeNameGenerator(cust);
 				outputPremadeName(gen);
 			}
-			
 		}
-		
-	}
-
-	private static boolean ifRandomGen(CustomizationModule cust) {
-		return cust.getMethodUsed().equals("?");
 	}
 
 	private static void outputNewName(NewNameGenerator gen) {
@@ -120,5 +116,8 @@ public class Main {
 	private static boolean ifPremade(CustomizationModule cust) {
 		return cust.getMethodUsed().equals("P");
 	}
-
+	
+	private static boolean ifRandomGen(CustomizationModule cust) {
+		return cust.getMethodUsed().equals("?");
+	}
 }

@@ -50,7 +50,6 @@ public class PremadeNameGenerator {
 
 	public void setFile(String file) {
 		this.file = file;
-		
 	}
 
 	public boolean fileObjectExists() {

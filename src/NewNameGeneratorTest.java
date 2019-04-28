@@ -53,7 +53,6 @@ class NewNameGeneratorTest {
 		gen.setGender("F");
 		ArrayList<String> name_attr = gen.getRandomName();
 		assertEquals("F", name_attr.get(1));
-		
 	}
 	
 	@Test

@@ -7,6 +7,10 @@ public class NewNameGenerator {
 	private int length;
 	private String beginningLetter;
 	private String lettersUsed;
+	private int new_name_length;
+	private int [] usedLettersIndices;
+	private String new_name;
+	private int usedLettersIndex;
 
 	public void setGender(String gender) {
 		this.gender = gender;
@@ -69,79 +73,102 @@ public class NewNameGenerator {
 	}
 
 	private String iterateThroughLetters(ArrayList<String> name_attr, char[] letters, Random rand) {
-		int new_name_length=0;
+		ifLengthIsRandomOptionGenerateRandomLength(rand);
+		initializeNewNameLengthNewNameUsedLetters(rand);
+		while(new_name_length<getLength()) {
+			int rand_index = rand.nextInt(letters.length);
+			checkRulesAndGenerateCharacterBasedOnRules(name_attr, letters, rand_index);
+		}
+		return new_name;
+	}
+
+	private void initializeNewNameLengthNewNameUsedLetters(Random rand) {
+		new_name_length=0;
+		usedLettersIndices = new int[getLettersUsed().length()];
+		getRandomLocationsOfLettersUsed(rand, usedLettersIndices);
+		new_name = "";
+		usedLettersIndex = 0;
+	}
+
+	private void checkRulesAndGenerateCharacterBasedOnRules(ArrayList<String> name_attr, char[] letters,
+			int rand_index) {
+		if(areNotBeginningContiguousConsonants(letters, new_name_length, new_name, rand_index)) {
+			
+		}
+		else if(areNotMoreThanThreeContiguousConsonants(letters, new_name_length, new_name, rand_index)) {
+			
+		}
+		else if(areNotTwoContiguousEndingConsonants(letters, new_name_length, new_name, rand_index)) {
+			
+		}
+		else if(areNotMoreThanThreeContiguousVowels(letters, new_name_length, new_name, rand_index)) {
+			
+		}
+		else if(new_name_length==0) {
+			ifBeginningLetterRandomOptionSetBeginningLetterToRandomLetter(letters, rand_index);
+			new_name+=getBeginningLetter();
+			new_name_length++;
+			ifNewNameLengthEqualsPreSetLengthAddNameAttributes(name_attr);
+		}
+		else if(isMale(new_name_length)) {
+			if(isNotAOrI(letters, rand_index)) {
+				setToMale(name_attr, letters, rand_index);
+			}
+		}
+		else if(isFemale(new_name_length)) {
+			if(isNotO(letters, rand_index)) {
+				setToFemale(name_attr, letters, rand_index);
+			}
+		}
+		else if(isRandomGender(new_name_length)) {
+			if(isNotO(letters, rand_index)) {
+				setToFemale(name_attr, letters, rand_index);
+			}
+			else if(isNotAOrI(letters, rand_index)) {
+				setToMale(name_attr, letters, rand_index);
+			}
+		}
+		else if(isIndexOfLetterUsed(new_name_length, usedLettersIndices, usedLettersIndex)) {
+			new_name+=getLettersUsed().charAt(usedLettersIndex);
+			usedLettersIndex++;
+			new_name_length++;
+		}
+		else {
+			new_name += letters[rand_index];
+			new_name_length++;
+		}
+	}
+
+	private void setToFemale(ArrayList<String> name_attr, char[] letters, int rand_index) {
+		new_name +=letters[rand_index];
+		new_name_length++;
+		String confirmed_gender = "F";
+		addAttributes(name_attr, new_name, confirmed_gender);
+	}
+
+	private void setToMale(ArrayList<String> name_attr, char[] letters, int rand_index) {
+		new_name +=letters[rand_index];
+		new_name_length++;
+		String confirmed_gender = "M";
+		addAttributes(name_attr, new_name, confirmed_gender);
+	}
+
+	private void ifNewNameLengthEqualsPreSetLengthAddNameAttributes(ArrayList<String> name_attr) {
+		if(new_name_length==getLength()) {
+			addAttributes(name_attr, new_name, getGender());
+		}
+	}
+
+	private void ifBeginningLetterRandomOptionSetBeginningLetterToRandomLetter(char[] letters, int rand_index) {
+		if(getBeginningLetter().contentEquals("?")) {
+			setBeginningLetter(String.valueOf(letters[rand_index]));
+		}
+	}
+
+	private void ifLengthIsRandomOptionGenerateRandomLength(Random rand) {
 		if(getLength() == -1) {
 			setLength(rand.nextInt(19)+1);
 		}
-		int [] usedLettersIndices = new int[getLettersUsed().length()];
-		getRandomLocationsOfLettersUsed(rand, usedLettersIndices);
-		String new_name = "";
-		int usedLettersIndex = 0;
-		while(new_name_length<getLength()) {
-			int rand_index = rand.nextInt(letters.length);
-			if(areNotBeginningContiguousConsonants(letters, new_name_length, new_name, rand_index)) {
-				
-			}
-			else if(areNotMoreThanThreeContiguousConsonants(letters, new_name_length, new_name, rand_index)) {
-				
-			}
-			else if(areNotTwoContiguousEndingConsonants(letters, new_name_length, new_name, rand_index)) {
-				
-			}
-			else if(areNotMoreThanThreeContiguousVowels(letters, new_name_length, new_name, rand_index)) {
-				
-			}
-			else if(new_name_length==0) {
-				if(getBeginningLetter().contentEquals("?")) {
-					setBeginningLetter(String.valueOf(letters[rand_index]));
-				}
-				new_name+=getBeginningLetter();
-				new_name_length++;
-				if(new_name_length==getLength()) {
-					addAttributes(name_attr, new_name, getGender());
-				}
-			}
-			else if(isMale(new_name_length)) {
-				if(isNotAOrI(letters, rand_index)) {
-					new_name +=letters[rand_index];
-					new_name_length++;
-					String confirmed_gender = "M";
-					addAttributes(name_attr, new_name, confirmed_gender);
-				}
-			}
-			else if(isFemale(new_name_length)) {
-				if(isNotO(letters, rand_index)) {
-					new_name +=letters[rand_index];
-					new_name_length++;
-					String confirmed_gender = "F";
-					addAttributes(name_attr, new_name, confirmed_gender);
-				}
-			}
-			else if(isRandomGender(new_name_length)) {
-				if(isNotO(letters, rand_index)) {
-					new_name +=letters[rand_index];
-					new_name_length++;
-					String confirmed_gender = "F";
-					addAttributes(name_attr, new_name, confirmed_gender);
-				}
-				else if(isNotAOrI(letters, rand_index)) {
-					new_name +=letters[rand_index];
-					new_name_length++;
-					String confirmed_gender = "M";
-					addAttributes(name_attr, new_name, confirmed_gender);
-				}
-			}
-			else if(isIndexOfLetterUsed(new_name_length, usedLettersIndices, usedLettersIndex)) {
-				new_name+=getLettersUsed().charAt(usedLettersIndex);
-				usedLettersIndex++;
-				new_name_length++;
-			}
-			else {
-				new_name += letters[rand_index];
-				new_name_length++;
-			}
-		}
-		return new_name;
 	}
 
 	private boolean areNotMoreThanThreeContiguousConsonants(char[] letters, int new_name_length, String new_name,
@@ -223,5 +250,4 @@ public class NewNameGenerator {
 	private boolean isFemale(int new_name_length) {
 		return new_name_length == getLength()-1 && getGender().equals("F");
 	}
-
 }

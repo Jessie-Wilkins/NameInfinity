@@ -99,13 +99,9 @@ public class PremadeNameGenerator {
 		ArrayList<String> names = getNamesFromFile();
 		ArrayList<String> genders = getGendersFromFile();
 		ArrayList<String> name_attr = new ArrayList<String>();
-		
 		ArrayList<String> filtered_names = selectNamesWithCriteria(names, genders);
-		
 		ArrayList<String> filtered_genders = selectGendersWithCriteria(genders);
-		
 		pickRandomName(filtered_names, filtered_genders, name_attr);
-		
 		return name_attr;
 	}
 
@@ -198,5 +194,4 @@ public class PremadeNameGenerator {
 		}
 		return rand_str;
 	}
-
 }

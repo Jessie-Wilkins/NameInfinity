@@ -44,15 +44,9 @@ public class NewNameGenerator {
 
 	public ArrayList<String> getRandomName() {
 		ArrayList<String> name_attr = new ArrayList<String>();
-		
 		char [] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z'};
-		
 		Random rand = new Random();
-		
 		iterateThroughLetters(name_attr, letters, rand);
-		
-		
-		
 		return name_attr;
 	}
 	
@@ -76,19 +70,13 @@ public class NewNameGenerator {
 
 	private String iterateThroughLetters(ArrayList<String> name_attr, char[] letters, Random rand) {
 		int new_name_length=0;
-		
 		if(getLength() == -1) {
 			setLength(rand.nextInt(19)+1);
 		}
-		
 		int [] usedLettersIndices = new int[getLettersUsed().length()];
-		
 		getRandomLocationsOfLettersUsed(rand, usedLettersIndices);
-	
 		String new_name = "";
-		
 		int usedLettersIndex = 0;
-		
 		while(new_name_length<getLength()) {
 			int rand_index = rand.nextInt(letters.length);
 			if(areNotBeginningContiguousConsonants(letters, new_name_length, new_name, rand_index)) {
@@ -142,7 +130,6 @@ public class NewNameGenerator {
 					String confirmed_gender = "M";
 					addAttributes(name_attr, new_name, confirmed_gender);
 				}
-				
 			}
 			else if(isIndexOfLetterUsed(new_name_length, usedLettersIndices, usedLettersIndex)) {
 				new_name+=getLettersUsed().charAt(usedLettersIndex);
@@ -153,7 +140,6 @@ public class NewNameGenerator {
 				new_name += letters[rand_index];
 				new_name_length++;
 			}
-			
 		}
 		return new_name;
 	}

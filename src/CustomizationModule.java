@@ -90,7 +90,7 @@ public class CustomizationModule {
 	}
 
 	private void checkLettersUsed(String test_value) {
-		if(areLetters(test_value) || test_value.equals("?")) {
+		if(areLetters(test_value) || isRandomOption(test_value)) {
 			setLettersUsed(test_value.toLowerCase());
 		}
 		else {
@@ -118,14 +118,14 @@ public class CustomizationModule {
 	}
 	
 	private void checkMethodUsed(String test_value) {
-		if(isMethod(test_value) || test_value.equals("?"))
+		if(isMethod(test_value) || isRandomOption(test_value))
 			setMethodUsed(test_value.toUpperCase());
 		else
 			System.out.println("Incorrect value: Please input either P or N");
 	}
 	
 	private void checkGenderUsed(String test_value) {
-		if(isGender(test_value) || test_value.equals("?"))
+		if(isGender(test_value) || isRandomOption(test_value))
 			setGender(test_value.toUpperCase());
 		else  
 			System.out.println("Incorrect value: Please input either M or F");
@@ -135,15 +135,17 @@ public class CustomizationModule {
 	private void checkLengthUsed(String test_value) {
 		try {
 			ifRandomOptionSetLengthToNegativeOne(test_value);
-			if(!test_value.contentEquals("?")) {
+			if(!isRandomOption(test_value)) {
 				ifNumberGreaterThanZeroSetLengthElsePrintErrorStatement(test_value);
 			}
-
 		}
-		
 		catch(Exception e) {
 			System.out.println("Incorrect value: Please input integers with digits 0-9 and size greater than 0");
 		}
+	}
+
+	private boolean isRandomOption(String test_value) {
+		return test_value.contentEquals("?");
 	}
 
 	private void ifNumberGreaterThanZeroSetLengthElsePrintErrorStatement(String test_value) {
@@ -157,7 +159,7 @@ public class CustomizationModule {
 	}
 
 	private void ifRandomOptionSetLengthToNegativeOne(String test_value) {
-		if(test_value.contentEquals("?")) {
+		if(isRandomOption(test_value)) {
 			setLength(-1);
 		}
 	}
@@ -174,5 +176,4 @@ public class CustomizationModule {
 	public void closeInput() {
 		user_input.close();
 	}
-
 }

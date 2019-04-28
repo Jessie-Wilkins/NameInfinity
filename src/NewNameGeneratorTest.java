@@ -83,11 +83,25 @@ class NewNameGeneratorTest {
 	}
 	
 	@Test
+	void canGetRandomNameWithRandomBeginningLetterOption() {
+		gen.setBeginningLetter("?");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals("?",name_attr.get(3));
+	}
+	
+	@Test
 	void canGetRandomNameWithSpecificLettersUsed() throws FileNotFoundException {
 		ArrayList<String> name_attr = gen.getRandomName();
 		String user_letters = sortString(gen.getLettersUsed());
 		String random_letters = sortString(name_attr.get(4)); 
 		assertEquals(user_letters, random_letters);
+	}
+	
+	@Test
+	void canGetRandomNameWithRandomLettersUsedOption() {
+		gen.setLettersUsed("?");
+		ArrayList<String> name_attr = gen.getRandomName();
+		assertNotEquals("?",name_attr.get(4));
 	}
 	
 	@Test

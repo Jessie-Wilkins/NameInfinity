@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -17,6 +18,23 @@ public class Main {
 			outputNewName(gen);
 		}
 		
+		else if(ifRandomGen(cust)) {
+			Random rand = new Random();
+			if(rand.nextBoolean()) {
+				NewNameGenerator gen = setNewNameGenerator(cust);
+				outputNewName(gen);
+			}
+			else {
+				PremadeNameGenerator gen = setPremadeNameGenerator(cust);
+				outputPremadeName(gen);
+			}
+			
+		}
+		
+	}
+
+	private static boolean ifRandomGen(CustomizationModule cust) {
+		return cust.getMethodUsed().equals("?");
 	}
 
 	private static void outputNewName(NewNameGenerator gen) {

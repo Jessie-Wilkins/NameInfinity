@@ -78,7 +78,7 @@ public class NewNameGenerator {
 		int new_name_length=0;
 		
 		if(getLength() == -1) {
-			setLength(rand.nextInt(20));
+			setLength(rand.nextInt(19)+1);
 		}
 		
 		int [] usedLettersIndices = new int[getLettersUsed().length()];
@@ -104,6 +104,9 @@ public class NewNameGenerator {
 				
 			}
 			else if(new_name_length==0) {
+				if(getBeginningLetter().contentEquals("?")) {
+					setBeginningLetter(String.valueOf(letters[rand_index]));
+				}
 				new_name+=getBeginningLetter();
 				new_name_length++;
 				if(new_name_length==getLength()) {
@@ -186,7 +189,7 @@ public class NewNameGenerator {
 
 	private void getRandomLocationsOfLettersUsed(Random rand, int[] usedLettersIndices) {
 		for(int i = 0; i<getLettersUsed().length(); i++) {
-			if(getLength() == 1) {
+			if(getLength() == 1 || getLettersUsed().contentEquals("?")) {
 				break;
 			}
 			usedLettersIndices[i] = rand.nextInt(getLength()-1);

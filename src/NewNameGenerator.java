@@ -1,3 +1,10 @@
+/*
+ Authors: Jessie Wilkins and Jordan Throgmorton 
+ Date: April 2019
+ Description: This class is used to randomly generate names from a character array 
+ 	based on the parameters from the fields
+ */
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -230,11 +237,11 @@ public class NewNameGenerator {
 		}
 		return lettersFound;
 	}
-
+	//Used to determine if the name has feminine features such as A or I
 	private boolean isNotAOrI(char[] letters, int rand_index) {
 		return letters[rand_index]!='a' && letters[rand_index]!='i';
 	}
-	
+	//Used to determine if the name has a masculine feature such as O
 	private boolean isNotO(char[] letters, int rand_index) {
 		return letters[rand_index]!='o';
 	}

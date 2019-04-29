@@ -1,3 +1,10 @@
+/*
+ Authors: Jessie Wilkins and Jordan Throgmorton 
+ Date: April 2019
+ Description: This class is used to randomly pick names from a file of names based on the
+ 	parameters received from the fields
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner; 

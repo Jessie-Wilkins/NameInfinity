@@ -1,3 +1,9 @@
+/*
+ Authors: Jessie Wilkins and Jordan Throgmorton 
+ Date: April 2019
+ Description: This class is used to receive the name parameters from the user
+ */
+
 import java.util.Scanner;
 
 public class CustomizationModule {
@@ -44,8 +50,7 @@ public class CustomizationModule {
 	}
 	
 	public void setLength(int length) {
-		this.length = length;
-		
+		this.length = length;	
 	}
 	
 	public int getLength() {
@@ -58,8 +63,7 @@ public class CustomizationModule {
 	}
 	
 	public void setBeginningLetter(String beginningLetter) {
-		this.beginningLetter = beginningLetter;
-		
+		this.beginningLetter = beginningLetter;	
 	}
 	
 	public String getBeginningLetter() {
@@ -69,7 +73,6 @@ public class CustomizationModule {
 	public void beginningLetterUserInput(String input_string) {
 		String test_value = input_string;
 		checkBeginningLetterUsed(test_value);
-		
 	}
 
 	private boolean isLetter(String test_value) {
@@ -90,6 +93,7 @@ public class CustomizationModule {
 	}
 
 	private void checkLettersUsed(String test_value) {
+		//Checks if the letters are letters or if the random option has been chosen
 		if(areLetters(test_value) || isRandomOption(test_value)) {
 			setLettersUsed(test_value.toLowerCase());
 		}
@@ -105,7 +109,7 @@ public class CustomizationModule {
 		}
 		return areLettersVar;
 	}
-
+	
 	private boolean isNotLetter(boolean areLettersVar, char i) {
 		if(!Character.isLetter(i)) {
 			areLettersVar = false;
@@ -118,6 +122,7 @@ public class CustomizationModule {
 	}
 	
 	private void checkMethodUsed(String test_value) {
+		//Checks if this is a known method or is a random option
 		if(isMethod(test_value) || isRandomOption(test_value))
 			setMethodUsed(test_value.toUpperCase());
 		else
@@ -125,14 +130,15 @@ public class CustomizationModule {
 	}
 	
 	private void checkGenderUsed(String test_value) {
+		//Checks if this is a known gender or is a ranodm option
 		if(isGender(test_value) || isRandomOption(test_value))
 			setGender(test_value.toUpperCase());
 		else  
 			System.out.println("Incorrect value: Please input either M or F");
-			
 	}
 	
 	private void checkLengthUsed(String test_value) {
+		//Checks if the length is a number and is above 0
 		try {
 			ifRandomOptionSetLengthToNegativeOne(test_value);
 			if(!isRandomOption(test_value)) {
@@ -143,7 +149,7 @@ public class CustomizationModule {
 			System.out.println("Incorrect value: Please input integers with digits 0-9 and size greater than 0");
 		}
 	}
-
+	
 	private boolean isRandomOption(String test_value) {
 		return test_value.contentEquals("?");
 	}
@@ -157,7 +163,7 @@ public class CustomizationModule {
 			System.out.println("Incorrect value: Please input integers with digits 0-9 and size greater than 0");
 		}
 	}
-
+	
 	private void ifRandomOptionSetLengthToNegativeOne(String test_value) {
 		if(isRandomOption(test_value)) {
 			setLength(-1);

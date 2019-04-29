@@ -1,0 +1,11 @@
+https://www.ias.edu/ideas/2009/wigderson-randomness-pseudorandomness
+Alright, there is a little bit of content in this one, but all you need to know is that pseudo-randomness has to do with something that is random like. In a way, everything is pseudo-random because there are biases working to make the random events less random. But you can make something "perfectly" random if you take two independent random-like sources and use them to generate randomness. Also, randomness has to do with how predictable something is: the less predictable, the more random.
+
+https://people.seas.harvard.edu/~salil/pseudorandomness/introduction.pdf
+Talks about applications of pseudorandomness and then talks about some psuedorandom objects. Pseudorandom generators use a "perfectly" random seed to generate random-looking data. Randomness extractors take biased not-so-random data and stream it into uniform, random-looking data. There are two other pseudorandom methods, but they don't seem relevant to us.
+
+https://docs.oracle.com/javase/7/docs/api/java/util/Random.html
+Added this so we can say what kind of pseudorandom object java.util.random is. Since it is using a 48-bit seed, it is definitely a pseudorandom generator.
+
+https://www.behindthename.com/random/
+This is a website focused on the origins of names and happens to have a name generator. The names are pre-made. I don't think it has a truly new name generator.

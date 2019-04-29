@@ -75,35 +75,35 @@ public class Main {
 	}
 
 	private static void getInputForLettersUsed(CustomizationModule cust, Scanner user_input) {
-		System.out.println("Please enter letters used in name, such as rei: ");
+		System.out.println("Please enter letters used in name, such as rei or choose random option with ?: ");
 		while(cust.getLettersUsed() == null) {
 			cust.lettersUsedUserInput(user_input.next());
 		}
 	}
 
 	private static void getInputForBeginningLetter(CustomizationModule cust, Scanner user_input) {
-		System.out.println("Please enter beginning letter used in name, such as a: ");
+		System.out.println("Please enter beginning letter used in name, such as a or choose random option with ?: ");
 		while(cust.getBeginningLetter() == null) {
 			cust.beginningLetterUserInput(user_input.next());
 		}
 	}
 
 	private static void getInputLengthUsed(CustomizationModule cust, Scanner user_input) {
-		System.out.println("Please enter length of name, such as 6: ");
+		System.out.println("Please enter length of name, such as 6 or choose random option with ?: ");
 		while(cust.getLength() == 0) {
 			cust.lengthUserInput(user_input.next());
 		}
 	}
 
 	private static void getInputForGenderUsed(CustomizationModule cust, Scanner user_input) {
-		System.out.println("Please enter gender of name, F for female or M for male: ");
+		System.out.println("Please enter gender of name, F for female or M for male or choose random option with ?: ");
 		while(cust.getGender() == null) {
 			cust.genderUserInput(user_input.next());
 		}
 	}
 
 	private static void getInputForMethodUsed(CustomizationModule cust, Scanner user_input) {
-		System.out.println("Please enter method for name generation, P for premade or N for new: ");
+		System.out.println("Please enter method for name generation, P for premade or N for new or choose random option with ?: ");
 		while(cust.getMethodUsed() == null) {
 			cust.methodUsedUserInput(user_input.next());
 		}

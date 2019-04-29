@@ -1,0 +1,3 @@
+https://people.seas.harvard.edu/~salil/pseudorandomness/introduction.pdf
+https://www.behindthename.com/random/
+https://www.ias.edu/ideas/2009/wigderson-randomness-pseudorandomness
